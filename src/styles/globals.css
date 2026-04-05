@@ -1,0 +1,41 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  html { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+}
+
+@layer components {
+  .vehicle-glow {
+    position: relative;
+    overflow: hidden;
+  }
+  .vehicle-glow::before {
+    content: '';
+    position: absolute;
+    inset: -0.5rem;
+    background-image: linear-gradient(to right, rgba(244, 132, 46, 0.3), rgba(59, 130, 246, 0.3));
+    border-radius: 1rem;
+    opacity: 0;
+    filter: blur(20px);
+    transition: all 0.5s;
+  }
+  .group:hover .vehicle-glow::before {
+    opacity: 1;
+  }
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.6); }
+}
