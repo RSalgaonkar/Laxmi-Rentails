@@ -8,9 +8,10 @@ const Contact = () => {
     name: '', email: '', phone: '', message: '' 
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  
+
   useEffect(() => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    console.log("import.meta.env " + JSON.stringify(import.meta.env));
     console.log('🔑 Public Key:', publicKey ? '✅ LOADED' : '❌ MISSING');
     if (publicKey) {
       emailjs.init(publicKey);
