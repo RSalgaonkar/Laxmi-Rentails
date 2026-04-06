@@ -14,7 +14,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-              Laxmi Rentals
+              Laxmi Rent a car & Bikes (Taxi Service)
             </h3>
             <p className="text-gray-400 mb-4">Goa's premium vehicle rental service. Cars, Bikes, Taxis. 24/7 Support.</p>
             <div className="flex space-x-4 mb-4">
@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center space-x-2 text-sm text-gray-400">
               <MapPin className="w-4 h-4" />
-              <span>Panjim, Goa - 403001</span>
+              <span>Siolim, Goa - 403517</span>
             </div>
           </div>
 

@@ -41,7 +41,7 @@ const Contact = () => {
 
   const sendWhatsApp = () => {
     const msg = `Hi Laxmi Rentals!\nName: ${formData.name}\nPhone: ${formData.phone}\n${formData.message}`;
-    window.open(`https://wa.me/918312345678?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/918698281323?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (
@@ -54,7 +54,7 @@ const Contact = () => {
             Get In Touch
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Ready to rent cars, bikes or taxis in Goa? Our Panjim team is here 24/7.
+            Ready to rent cars, bikes or taxis in Goa? Our Siolim team is here 24/7.
           </p>
         </section>
 
@@ -68,7 +68,7 @@ const Contact = () => {
                 <MapPin className="w-10 h-10 text-green-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-bold text-xl text-gray-900 mb-2">Visit Us</h3>
-                  <p className="text-gray-700 font-semibold">Shop 12, MG Road<br/>Panjim, Goa - 403001</p>
+                  <p className="text-gray-700 font-semibold">Laxmi Rent a car & Bikes (Taxi Service)<br/>Bammon Vaddo, Siolim, Goa - 403517</p>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ const Contact = () => {
                 <Phone className="w-10 h-10 text-green-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-bold text-xl text-gray-900 mb-2">Call Us</h3>
-                  <p className="text-gray-700 font-semibold">+91 83123 45678</p>
+                  <p className="text-gray-700 font-semibold">+91 8698281323</p>
                   <p className="text-sm text-emerald-600 font-medium flex items-center">
                     <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
                     24/7 Available
@@ -105,7 +105,7 @@ const Contact = () => {
                 <Mail className="w-10 h-10 text-green-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-bold text-xl text-gray-900 mb-2">Email</h3>
-                  <p className="text-gray-700 font-semibold break-all">hello@laxmirentals.com</p>
+                  <p className="text-gray-700 font-semibold break-all">suashant.salgaonkar@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -204,11 +204,14 @@ const Contact = () => {
         <section className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/50">
           <div className="p-8 text-center border-b border-gray-100">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Our Location</h2>
-            <p className="text-gray-600">Shop 12, MG Road, Panjim</p>
+            <p className="text-gray-600">Laxmi Rent a car & Bikes (Taxi Service), Bammon Vaddo, Siolim, Goa 403517</p>
           </div>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3852.0!2d73.8278!3d15.4980!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbff6b0d6b0b0b1%3A0x1234567890abcdef!2sMG%20Road%2C%20Panjim%2C%20Goa!5e0!3m2!1sen!2sin!4v1733500000000!5m2!1sen!2sin"
-            width="100%" height="500" style={{border:0}} loading="lazy" className="w-full"/>
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3851.92!2d73.7657756!3d15.6242875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfeb5e1c9c2b3f%3A0xef291a4318605777!2sLaxmi%20Rent%20a%20car%20%26%20Bikes%20(Taxi%20Service)!5e0!3m2!1sen!2sin!4v1733500000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="400"
+            loading="lazy" >
+          </iframe>
         </section>
       </div>
     </div>

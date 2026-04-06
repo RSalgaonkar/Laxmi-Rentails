@@ -10,7 +10,7 @@ const Hero: React.FC = () => (
     <div className="container mx-auto px-6 text-center text-white relative z-10 animate-float">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-white to-yellow-100 bg-clip-text text-transparent drop-shadow-2xl leading-tight">
-          Laxmi Rentals
+          Laxmi Rent a car & Bikes (Taxi Service)
         </h1>
         <p className="text-2xl md:text-3xl mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
           Premium Taxi • Car • Bike Rentals <br className="md:hidden" /> 

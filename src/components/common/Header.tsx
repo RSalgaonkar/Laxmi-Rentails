@@ -208,7 +208,7 @@ const Header = () => {
                   <Phone className="w-8 h-8 shadow-lg" />
                   <div className="flex-1">
                     <span className="block text-lg font-bold">Call Now!</span>
-                    <span className="text-sm opacity-90">+91 83123 45678</span>
+                    <span className="text-sm opacity-90">+91 8698281323</span>
                   </div>
                 </a>
               </div>
