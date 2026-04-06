@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo, type FC, type FormEvent, ChangeEvent } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { vehicles } from '../data/vehicles';  // Adjust if path differs
+import { useState, useEffect, useMemo, type FC, type ChangeEvent, type FormEvent } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { vehicles } from '../data/vehicles';
 import { Vehicle } from './types';
 import Input from './ui/Input';
 import Button from './ui/Button';
@@ -9,119 +9,144 @@ import Card from './ui/Card';
 const BookingForm: FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const vehicle = vehicles.find((v) => v.id === id) as Vehicle | undefined;
-
+  const vehicle = vehicles.find(v => v.id === id) as Vehicle;
+  
+  // New fields: customer name and phone
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
-  const [fromLocation, setFromLocation] = useState('');
-  const [toLocation, setToLocation] = useState('');
   const [days, setDays] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isTaxi = vehicle?.type === 'taxi';
-  const isRental = !isTaxi;  // car or bike
-
   useEffect(() => {
-    let calcDays = 0;
-    if (dateFrom) {
-      if (isRental && dateTo && dateFrom < dateTo) {
-        const from = new Date(dateFrom);
-        const to = new Date(dateTo);
-        calcDays = Math.ceil((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
-      } else if (isTaxi) {
-        calcDays = 1;  // Single day for taxi
-      }
+    if (dateFrom && dateTo) {
+      const from = new Date(dateFrom);
+      const to = new Date(dateTo);
+      const diff = Math.ceil((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+      setDays(diff > 0 ? diff : 0);
     }
-    setDays(calcDays > 0 ? calcDays : 0);
-  }, [dateFrom, dateTo, isTaxi, isRental]);
+  }, [dateFrom, dateTo]);
 
   const whatsappMessage = useMemo(() => {
-    const total = (vehicle?.pricePerDay || 0) * days;
-    return `NEW BOOKING - Laxmi Rentals\nCustomer: ${customerName}\nPhone: ${customerPhone}\nVehicle: ${vehicle?.name}\nFrom Date: ${dateFrom}\n${isRental ? `To Date: ${dateTo}\n` : ''}From: ${fromLocation}\n${isTaxi ? `To: ${toLocation}\n` : ''}Days: ${days}\nTotal: ₹${total}\nConfirm?`;
-  }, [customerName, customerPhone, vehicle, dateFrom, dateTo, fromLocation, toLocation, days, isTaxi, isRental]);
+    const total = vehicle.pricePerDay * days;
+    return `🚀 *NEW BOOKING REQUEST - Laxmi Rentals* 🏍️\n\n👤 *Customer:* ${customerName}\n📱 *Phone:* ${customerPhone}\n\n🚗 *Vehicle:* ${vehicle.name}\n📅 *From:* ${dateFrom}\n📅 *To:* ${dateTo}\n⏱️ *Days:* ${days}\n💰 *Total:* ₹${total}\n\n*Please confirm & reply!* 🙏`;
+  }, [customerName, customerPhone, vehicle, dateFrom, dateTo, days]);
 
-  const ADMIN_WHATSAPP_NUMBER = '918888120894';  // Update your number
+  // CHANGE THIS TO YOUR ADMIN WHATSAPP NUMBER (India: +91XXXXXXXXXX)
+  const ADMIN_WHATSAPP_NUMBER = '+918888120894'; // ← EDIT HERE!
 
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => setCustomerName(e.target.value);
-  const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => setCustomerPhone(e.target.value);
-  const handleDateFromChange = (e: ChangeEvent<HTMLInputElement>) => setDateFrom(e.target.value);
-  const handleDateToChange = (e: ChangeEvent<HTMLInputElement>) => setDateTo(e.target.value);
-  const handleFromLocationChange = (e: ChangeEvent<HTMLInputElement>) => setFromLocation(e.target.value);
-  const handleToLocationChange = (e: ChangeEvent<HTMLInputElement>) => setToLocation(e.target.value);
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const hasValidDates = dateFrom && (isTaxi || (dateTo && dateFrom < dateTo));
-    if (!customerName || !customerPhone || !dateFrom || !fromLocation || days === 0 || !hasValidDates || (isTaxi && !toLocation)) {
-      alert(`Please fix:\n- All required fields\n- Valid dates (From < To for rentals)\n- Locations`);
+    
+    // Validate all fields
+    if (!customerName || !customerPhone || !dateFrom || !dateTo || days <= 0) {
+      alert('Please fill all fields and select valid dates');
       return;
     }
 
     setIsSubmitting(true);
-    const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    // Send directly to admin WhatsApp
+    const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP_NUMBER.replace(/[+-\s]/g, '')}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
+    
+    // Auto redirect after sending
     setTimeout(() => {
-      setIsSubmitting(false);
       navigate('/vehicles');
     }, 2000);
   };
 
-  if (!vehicle) return <div className="py-20 text-center text-xl">Vehicle not found</div>;
-
-  const isSubmitDisabled = isSubmitting || days === 0 || !customerName || !customerPhone || !dateFrom || !fromLocation;
+  if (!vehicle) {
+    return <div className="py-20 text-center">Vehicle not found</div>;
+  }
 
   return (
-    <section className="min-h-screen py-20 px-6 bg-gradient-to-br from-orange-50 to-blue-50">
-      {/* Fixed Home button */}
-      {/* <Link
-        to="/"
-        className="fixed top-4 right-4 z-50 md:top-6 md:right-6 group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-2xl shadow-2xl hover:shadow-none hover:scale-105 transform transition-all duration-300 border-4 border-white hover:border-transparent hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700"
-      >
-        <span>Home</span>
-      </Link> */}
-
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-20">
-          <h1 className="text-5xl lg:text-6xl font-black bg-gradient-to-r from-saffron-600 to-goa-blue bg-clip-text text-transparent mb-6">
-            Book {vehicle.name}
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Details sent via WhatsApp to admin</p>
-        </div>
-
-        <Card>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <Input label="Full Name" type="text" placeholder="Rashmith Salgaonkar" value={customerName} onChange={handleNameChange} required />
-            <Input label="Phone" type="tel" placeholder="91 98XXX XXXXX" value={customerPhone} onChange={handlePhoneChange} required />
-
-            <Input label="From Date" type="date" value={dateFrom} onChange={handleDateFromChange} required />
-
-            {isRental && (
-              <Input label="To Date" type="date" value={dateTo} onChange={handleDateToChange} required />
-            )}
-
-            <Input label="From Location" type="text" placeholder="Panjim, Goa" value={fromLocation} onChange={handleFromLocationChange} required />
-
-            {isTaxi && <Input label="To Destination" type="text" placeholder="Margaon Station" value={toLocation} onChange={handleToLocationChange} required />}
-
-            {days > 0 && (
-              <div className="bg-emerald-100 p-6 rounded-2xl shadow-lg">
-                <p className="text-2xl font-bold text-emerald-700">₹{(vehicle.pricePerDay * days).toLocaleString()}</p>
-                <p className="text-lg text-emerald-600">{days} day{days > 1 ? 's' : ''}</p>
+    <section>
+      <div className="fixed top-4 right-4 z-50 md:top-6 md:right-6">
+        <Link to="/" className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-2xl shadow-2xl hover:shadow-none hover:scale-105 transform transition-all duration-300 border-4 border-white hover:border-transparent hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700">
+          <span>🏠</span><span>Home</span>
+        </Link>
+      </div>
+      
+      <div className="min-h-screen py-20 px-6 bg-gradient-to-br from-orange-50 to-blue-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-20">
+            <h1 className="text-5xl lg:text-6xl font-black bg-gradient-to-r from-saffron-600 to-goa-blue bg-clip-text text-transparent mb-6">
+              Book {vehicle.name}
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Enter your details to send booking request via WhatsApp</p>
+          </div>
+          
+          <Card>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* New: Customer Name */}
+              <Input
+                label="Your Full Name"
+                type="text"
+                placeholder="Enter your name"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                required
+              />
+              
+              {/* New: Customer Phone */}
+              <Input
+                label="Your Phone Number"
+                type="tel"
+                placeholder="+91 98765 43210"
+                value={customerPhone}
+                onChange={(e) => setCustomerPhone(e.target.value)}
+                required
+              />
+              
+              <Input
+                label="From Date"
+                type="date"
+                value={dateFrom}
+                onChange={(e) => setDateFrom(e.target.value)}
+                required
+              />
+              
+              <Input
+                label="To Date"
+                type="date"
+                value={dateTo}
+                onChange={(e) => setDateTo(e.target.value)}
+                required
+              />
+              
+              <div>
+                <span className="text-3xl font-black block">₹{vehicle.pricePerDay}</span>
+                <div className="text-lg font-semibold opacity-90">per day</div>
               </div>
-            )}
-
-            <Button
-              type="submit"
-              disabled={isSubmitDisabled}
-              size="lg"
-              className="!text-xl !py-8 shadow-2xl bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? 'Sending...' : 'Send to WhatsApp'}
-            </Button>
-          </form>
-        </Card>
+              
+              {days > 0 && (
+                <div className="bg-emerald-100 p-6 rounded-2xl shadow-lg">
+                  <p className="text-2xl font-bold text-emerald-700 mb-2">Total: ₹{vehicle.pricePerDay * days}</p>
+                  <p className="text-lg text-emerald-600">({days} days)</p>
+                </div>
+              )}
+              
+              <Button
+                type="submit"
+                disabled={!customerName || !customerPhone || days === 0 || isSubmitting}
+                size="lg"
+                fullWidth
+                className="!text-xl !py-8 shadow-2xl !shadow-green-500/30 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting 
+                  ? '📱 Sending to Admin...' 
+                  : `📱 Send WhatsApp Booking (${days > 0 ? `₹${vehicle.pricePerDay * days}` : 'Fill Details'})`
+                }
+              </Button>
+              
+              <p className="text-center text-sm text-gray-500">
+                We'll send your booking details directly to admin via WhatsApp
+              </p>
+            </form>
+          </Card>
+        </div>
       </div>
     </section>
   );
