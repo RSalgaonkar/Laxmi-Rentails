@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { NavLink, useNavigate, createSearchParams } from 'react-router-dom';
-import { Phone, User, Search, Menu, X, ChevronDown } from 'lucide-react';
+import { Phone, User, Search, Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [search, setSearch] = useState('');
