@@ -2,10 +2,10 @@ import { ReactElement } from 'react';
 
 const Footer = (): ReactElement => {
   const contactInfo = {
-    phone: '+91-832-1234567',
-    email: 'bookings@laxmirentals.com',
-    address: 'Laxmi Rentals, Panjim, Goa - 403001',
-    whatsapp: '+91-98765-43210'
+    phone: '+91-8698281323',
+    email: 'sushantsalgaonkar@gmail.com',
+    address: 'Laxmi Rentals, Siolim, Goa - 400517',
+    whatsapp: '+91-8698281323'
   };
 
   return (
@@ -41,8 +41,8 @@ const Footer = (): ReactElement => {
           <ul className="space-y-3 text-lg">
             <li><a href="/" className="hover:text-orange-400 transition-colors">Home</a></li>
             <li><a href="/vehicles" className="hover:text-orange-400 transition-colors">Vehicles</a></li>
-            <li><a href="/booking" className="hover:text-orange-400 transition-colors">Booking</a></li>
-            <li><a href="/taxi" className="hover:text-orange-400 transition-colors">Taxi Services</a></li>
+            {/* <li><a href="/booking" className="hover:text-orange-400 transition-colors">Booking</a></li> */}
+            {/* <li><a href="/taxi" className="hover:text-orange-400 transition-colors">Taxi Services</a></li> */}
           </ul>
         </div>
 
