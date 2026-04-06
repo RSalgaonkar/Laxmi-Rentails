@@ -39,3 +39,11 @@
   0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
   50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.6); }
 }
+
+* {
+  scroll-behavior: smooth !important;
+}
+
+html, body {
+  scroll-behavior: smooth !important;
+}

@@ -1,5 +1,5 @@
 const Policy = () => (
-  <div className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" id="privacy">
     <section className="text-center mb-20">
       <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent mb-6">
         Privacy Policy

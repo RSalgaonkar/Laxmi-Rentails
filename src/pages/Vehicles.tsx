@@ -10,7 +10,7 @@ const VehiclesPage: React.FC = () => {
   const { vehicles: filteredVehicles, filter, setFilter, search, setSearch } = useVehicles();
 
   return (
-    <section className="py-24 min-h-screen">
+    <section className="py-24 min-h-screen" id="vehicles">
       {/* <div className="fixed top-4 right-4 z-50 md:top-6 md:right-6">
         <Link
           to="/"

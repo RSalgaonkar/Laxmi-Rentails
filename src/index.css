@@ -17,3 +17,10 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth !important;
+}
+
+html, body {
+  scroll-behavior: smooth !important;
+}

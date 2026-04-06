@@ -8,6 +8,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Policy from './pages/Policy';
+import ScrollToHashElement from './components/ScrollToHashElement';
 
 function App() {
   return (
@@ -18,7 +19,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/vehicles" element={<Vehicles />} />
-            <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
@@ -26,6 +26,7 @@ function App() {
             <Route path="/privacy-policy" element={<Policy />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <ScrollToHashElement />
         </main>
         <Footer />
       </div>

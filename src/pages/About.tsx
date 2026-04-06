@@ -1,7 +1,7 @@
 import { Star, Users, Car, Award } from 'lucide-react';
 
 const About = () => (
-  <div className="py-20 bg-gradient-to-b from-white to-orange-50">
+  <div className="py-20 bg-gradient-to-b from-white to-orange-50" id="about">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Hero */}
       <section className="text-center mb-20">
