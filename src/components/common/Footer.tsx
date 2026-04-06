@@ -1,83 +1,159 @@
-import { ReactElement } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Facebook, Twitter, MessageCircle, Instagram, MapPin, Phone, Clock } from 'lucide-react';
 
-const Footer = (): ReactElement => {
-  const contactInfo = {
-    phone: '+91-8698281323',
-    email: 'sushantsalgaonkar@gmail.com',
-    address: 'Laxmi Rentals, Siolim, Goa - 400517',
-    whatsapp: '+91-8698281323'
-  };
-
-  return (
-    <footer className="bg-gradient-to-r from-indigo-900 via-purple-900 to-slate-900 text-white py-12 px-4 md:px-8 lg:px-16 mt-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        
-        {/* Contact Section */}
-        <div className="space-y-4">
-          <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-            Contact Us
-          </h3>
-          <div className="space-y-3 text-lg">
-            <p className="flex items-center gap-3 hover:text-orange-400 transition-colors">
-              <i className="fas fa-phone text-xl text-green-400"></i>
-              {contactInfo.phone}
-            </p>
-            <p className="flex items-center gap-3 hover:text-orange-400 transition-colors">
-              <i className="fas fa-envelope text-xl text-blue-400"></i>
-              <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
-            </p>
-            <p className="flex items-center gap-3 hover:text-orange-400 transition-colors">
-              <i className="fab fa-whatsapp text-xl text-green-500"></i>
-              <a href={`https://wa.me/${contactInfo.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                WhatsApp
-              </a>
-            </p>
-          </div>
-        </div>
-
-        {/* Quick Links */}
+const Footer = () => (
+  <footer className="bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 text-white py-12 mt-20 relative overflow-hidden z-10">
+    <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-5" />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        {/* Brand - SAME */}
         <div>
-          <h3 className="text-2xl font-bold mb-6">Quick Links</h3>
-          <ul className="space-y-3 text-lg">
-            <li><a href="/" className="hover:text-orange-400 transition-colors">Home</a></li>
-            <li><a href="/vehicles" className="hover:text-orange-400 transition-colors">Vehicles</a></li>
-            {/* <li><a href="/booking" className="hover:text-orange-400 transition-colors">Booking</a></li> */}
-            {/* <li><a href="/taxi" className="hover:text-orange-400 transition-colors">Taxi Services</a></li> */}
-          </ul>
+          <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+            लक्ष्मी Rentals
+          </h3>
+          <p className="text-gray-400 mb-4">Goa's premium vehicle rental service. Cars • Bikes • Taxis • 24/7 Support.</p>
+          <div className="flex space-x-4 mb-4">
+            <a href="https://facebook.com/laxmirentals" className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all" aria-label="Facebook">
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a href="https://twitter.com/laxmirentals" className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all" aria-label="Twitter">
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a href="https://wa.me/918312345678" className="p-3 bg-green-500 rounded-full hover:bg-green-600 transition-all" aria-label="WhatsApp">
+              <MessageCircle className="w-5 h-5" />
+            </a>
+            <a href="https://instagram.com/laxmirentals" className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all" aria-label="Instagram">
+              <Instagram className="w-5 h-5" />
+            </a>
+          </div>
+          <div className="flex items-center space-x-2 text-sm text-gray-400">
+            <MapPin className="w-4 h-4" />
+            <span>Panjim, Goa - 403001</span>
+          </div>
         </div>
 
-        {/* Location & Map Section */}
-        <div className="lg:col-span-2">
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-              Our Location
-            </h3>
-            <p className="text-lg leading-relaxed">{contactInfo.address}</p>
-            
-            {/* Google Map Embed - Panjim, Goa */}
-            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 hover:border-orange-400/50 transition-all duration-300">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.95!2d73.765824!3d15.624369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDM3JzI3LjciTiA3M8KwNDUnNTcuMCJF!5e0!3m2!1sen!2sin!4v1733452800000!5m2!1sen!2sin"
-                width="100%"
-                height="250"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Laxmi Rentals - Siolim, Goa"
-                className="w-full h-64 md:h-72 lg:h-64"
-              />
+        {/* QUICK LINKS - Fixed */}
+        <div>
+          <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
+          <nav className="space-y-3">
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => 
+                `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${
+                  isActive 
+                    ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' 
+                    : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'
+                }`
+              }
+            >
+              🏠 Home
+            </NavLink>
+            <NavLink 
+              to="/vehicles" 
+              className={({ isActive }) => 
+                `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${
+                  isActive 
+                    ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' 
+                    : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'
+                }`
+              }
+            >
+              🚗 Vehicles
+            </NavLink>
+            <NavLink 
+              to="/booking" 
+              className={({ isActive }) => 
+                `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${
+                  isActive 
+                    ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' 
+                    : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'
+                }`
+              }
+            >
+              📅 Book Now
+            </NavLink>
+            <NavLink 
+              to="/about" 
+              className={({ isActive }) => 
+                `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${
+                  isActive 
+                    ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' 
+                    : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'
+                }`
+              }
+            >
+              ℹ️ About Us
+            </NavLink>
+          </nav>
+        </div>
+
+        {/* SERVICES - Fixed */}
+        {/* Services */}
+        <div>
+          <h4 className="text-lg font-semibold mb-6">Services</h4>
+          <nav className="space-y-3">
+            <NavLink 
+              to="/vehicles?type=all" 
+              className={({ isActive }) => `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${isActive ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'}`}
+            >
+              🔧 All Services
+            </NavLink>
+            <NavLink 
+              to="/vehicles?type=car" 
+              className={({ isActive }) => `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${isActive ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'}`}
+            >
+              🚗 Car Rental
+            </NavLink>
+            <NavLink 
+              to="/vehicles?type=bike" 
+              className={({ isActive }) => `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${isActive ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'}`}
+            >
+              🏍️ Bike Rental
+            </NavLink>
+            <NavLink 
+              to="/vehicles?type=taxi" 
+              className={({ isActive }) => `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer z-30 relative group ${isActive ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' : 'text-gray-400 hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10'}`}
+            >
+              🚕 Taxi Service
+            </NavLink>
+          </nav>
+        </div>
+
+        {/* Contact - SAME */}
+        <div>
+          <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
+          <div className="space-y-4 text-gray-400">
+            <a href="tel:+918312345678" className="flex items-center hover:text-orange-400 transition-all duration-300 cursor-pointer">
+              <Phone className="w-5 h-5 mr-3" />
+              +91 83123 45678
+            </a>
+            <div className="flex items-center">
+              <Clock className="w-5 h-5 mr-3 text-orange-400" />
+              <span>24/7 Available</span>
             </div>
+            <NavLink to="/contact" className={({ isActive }) => 
+              `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10 ${isActive ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' : ''}`
+            }>
+              ✉️ Contact Form
+            </NavLink>
+            <NavLink to="/privacy-policy" className={({ isActive }) => 
+              `block py-2 px-1 rounded transition-all duration-300 font-medium cursor-pointer hover:text-orange-400 hover:pl-4 hover:bg-orange-500/10 ${isActive ? 'text-orange-400 bg-orange-500/20 pl-4 shadow-md' : ''}`
+            }>
+              📜 Privacy Policy
+            </NavLink>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="border-t border-white/20 mt-12 pt-8 text-center text-sm md:text-base">
-        <p>&copy; 2026 Laxmi Rentals. All rights reserved. | Serving Goa with trusted rentals.</p>
+      <div className="border-t border-white/10 pt-8 text-center text-xs text-gray-400">
+        <p>
+          © 2026 <NavLink to="/about" className="hover:text-orange-400 font-medium cursor-pointer">Laxmi Rentals</NavLink> | 
+          Panjim, Goa | <NavLink to="/privacy-policy" className="hover:text-orange-400 font-medium cursor-pointer">Privacy</NavLink> | 
+          <NavLink to="/privacy-policy" className="hover:text-orange-400 font-medium cursor-pointer">Terms</NavLink>
+        </p>
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
 
 export default Footer;

@@ -23,11 +23,11 @@ const Home: React.FC = () => (
           ))}
         </div>
         
-        <div className="text-center">
+        {/* <div className="text-center">
           <Button size="lg" className="px-16 py-8 text-2xl shadow-2xl !shadow-orange-500/50 mx-auto">
             🚙 View All Vehicles
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   </>

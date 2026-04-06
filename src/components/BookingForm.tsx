@@ -75,12 +75,12 @@ const BookingForm: FC = () => {
   return (
     <section className="min-h-screen py-20 px-6 bg-gradient-to-br from-orange-50 to-blue-50">
       {/* Fixed Home button */}
-      <Link
+      {/* <Link
         to="/"
         className="fixed top-4 right-4 z-50 md:top-6 md:right-6 group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-2xl shadow-2xl hover:shadow-none hover:scale-105 transform transition-all duration-300 border-4 border-white hover:border-transparent hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700"
       >
         <span>Home</span>
-      </Link>
+      </Link> */}
 
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-20">
