@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, type FC, type ChangeEvent, type FormEvent } from 'react';
+import { useState, useEffect, useMemo, type FC, type FormEvent } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { vehicles } from '../data/vehicles';
 import { Vehicle } from './types';
