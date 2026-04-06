@@ -107,7 +107,7 @@ const Header = () => {
               </nav>
 
               <div className="flex items-center space-x-2 ml-4">
-                <a href="tel:+918312345678" className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all text-sm hover:-translate-y-0.5">
+                <a href="tel:+918698281323" className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all text-sm hover:-translate-y-0.5">
                   <Phone className="w-4 h-4" />
                   <span>Call</span>
                 </a>
@@ -201,7 +201,7 @@ const Header = () => {
               {/* Fixed CTA Bottom */}
               <div className="pt-4 border-t border-gray-200 bg-white/90 backdrop-blur-sm p-4 rounded-t-3xl shadow-2xl -mx-6 mt-auto">
                 <a 
-                  href="tel:+918312345678"
+                  href="tel:+918698281323"
                   className="flex items-center space-x-4 p-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-3xl font-bold shadow-2xl hover:shadow-3xl hover:-translate-y-1 active:scale-95 transition-all border-2 border-green-400 block text-center w-full"
                   onClick={() => setMobileOpen(false)}
                 >

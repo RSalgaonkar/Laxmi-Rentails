@@ -24,7 +24,7 @@ const Footer = () => {
               <a href="https://twitter.com/laxmirentals" className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all" aria-label="Twitter">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="https://wa.me/918312345678" className="p-3 bg-green-500 rounded-full hover:bg-green-600 transition-all" aria-label="WhatsApp">
+              <a href="https://wa.me/918698281323" className="p-3 bg-green-500 rounded-full hover:bg-green-600 transition-all" aria-label="WhatsApp">
                 <MessageCircle className="w-5 h-5" />
               </a>
               <a href="https://instagram.com/laxmirentals" className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all" aria-label="Instagram">
@@ -127,9 +127,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
             <div className="space-y-4 text-gray-400">
-              <a href="tel:+918312345678" className="flex items-center hover:text-orange-400 transition-all duration-300 cursor-pointer group">
+              <a href="tel:+918698281323" className="flex items-center hover:text-orange-400 transition-all duration-300 cursor-pointer group">
                 <Phone className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" />
-                +91 83123 45678
+                +91 8698281323
               </a>
               <div className="flex items-center">
                 <Clock className="w-5 h-5 mr-3 text-orange-400" />
