@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, type FC, type FormEvent, ChangeEvent } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { vehicles } from '../data/vehicles';  // Adjust if path differs
 import { Vehicle } from './types';
 import Input from './ui/Input';

@@ -1,7 +1,7 @@
 import Hero from '../components/common/Hero';
 import VehicleCard from '../components/VehicleCard';
 import { vehicles } from '../data/vehicles';
-import Button from '../components/ui/Button';
+// import Button from '../components/ui/Button';
 
 const Home: React.FC = () => (
   <>
