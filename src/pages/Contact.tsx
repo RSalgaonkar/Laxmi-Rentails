@@ -1,27 +1,50 @@
-import { useState } from 'react';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { useRef, useState } from 'react'; // CHANGED: Added useRef
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'; // ADDED: MessageCircle
+import emailjs from '@emailjs/browser'; // NEW IMPORT
 
 const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null); // NEW: Form ref
   const [formData, setFormData] = useState({ 
     name: '', 
     email: '', 
     phone: '', 
     message: '' 
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle'); // NEW: Status
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // UPDATED: Real email sending
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Integrate emailjs or your backend API
-    alert('Thanks! We\'ll contact you soon.');
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    setStatus('sending');
+
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
+        formRef.current!,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+      );
+      setStatus('success');
+      setFormData({ name: '', email: '', phone: '', message: '' });
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Email error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
+  };
+
+  // NEW: WhatsApp with form data
+  const sendWhatsApp = () => {
+    const msg = `Hi Laxmi Rentals!\n\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n\n${formData.message}`;
+    window.open(`https://wa.me/918312345678?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (
-    // BULLETPROOF SCROLL TARGET + HEADER OFFSET
     <div id="contact" className="scroll-mt-40 pt-40 min-h-screen bg-gradient-to-br from-slate-50 to-orange-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         
-        {/* Hero Section */}
+        {/* Hero Section - UNCHANGED */}
         <section className="text-center mb-20">
           <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-500 via-blue-500 to-orange-500 bg-clip-text text-transparent mb-6 drop-shadow-lg">
             Get In Touch
@@ -34,7 +57,7 @@ const Contact = () => {
         {/* Contact Info + Form Grid */}
         <div className="grid lg:grid-cols-2 gap-12 mb-20 items-start">
           
-          {/* Contact Details */}
+          {/* Contact Details - UPDATED Phone button */}
           <div className="space-y-8 lg:order-2">
             <div className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/50">
               <div className="flex items-start space-x-4 mb-6">
@@ -44,6 +67,18 @@ const Contact = () => {
                   <p className="text-gray-700 font-semibold">Shop 12, MG Road<br/>Panjim, Goa - 403001</p>
                 </div>
               </div>
+            </div>
+
+            {/* NEW WhatsApp Button */}
+            <div className="bg-green-500/10 border-2 border-green-500/30 p-6 rounded-3xl text-center hover:bg-green-500/20 transition-all">
+              <button
+                onClick={sendWhatsApp}
+                className="w-full flex items-center justify-center space-x-3 text-green-700 font-bold py-4 px-6 rounded-2xl hover:text-green-800 hover:bg-green-500/20 transition-all group"
+              >
+                <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <span>Send WhatsApp Message</span>
+              </button>
+              <p className="text-xs text-green-600 mt-2 opacity-90">📱 Pre-fills your form data</p>
             </div>
 
             <div className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/50">
@@ -71,13 +106,20 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* UPDATED Form - EmailJS ready */}
           <div className="lg:order-1">
-            <form onSubmit={handleSubmit} className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/50 space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/50 space-y-6">
+              {/* EmailJS hidden fields */}
+              <input type="hidden" name="user_name" value={formData.name} />
+              <input type="hidden" name="user_email" value={formData.email} />
+              <input type="hidden" name="user_phone" value={formData.phone} />
+              <input type="hidden" name="user_message" value={formData.message} />
+
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">Full Name</label>
                 <input
                   type="text"
+                  name="name" // EmailJS required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl focus:border-orange-400 focus:outline-none transition-all bg-white/50 backdrop-blur-sm shadow-md hover:shadow-lg required"
@@ -91,6 +133,7 @@ const Contact = () => {
                   <label className="block text-sm font-semibold text-gray-700 mb-3">Email</label>
                   <input
                     type="email"
+                    name="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl focus:border-orange-400 focus:outline-none transition-all bg-white/50 backdrop-blur-sm shadow-md hover:shadow-lg required"
@@ -102,6 +145,7 @@ const Contact = () => {
                   <label className="block text-sm font-semibold text-gray-700 mb-3">Phone</label>
                   <input
                     type="tel"
+                    name="phone"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl focus:border-orange-400 focus:outline-none transition-all bg-white/50 backdrop-blur-sm shadow-md hover:shadow-lg required"
@@ -114,6 +158,7 @@ const Contact = () => {
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">Message</label>
                 <textarea
+                  name="message"
                   rows={6}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -125,15 +170,32 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-5 px-8 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl hover:from-orange-600 hover:to-red-600 transform hover:-translate-y-1 transition-all duration-300"
+                disabled={status === 'sending'}
+                className={`w-full py-5 px-8 rounded-2xl font-bold text-lg shadow-xl transition-all duration-300 transform ${
+                  status === 'sending'
+                    ? 'bg-gray-400 cursor-not-allowed opacity-75'
+                    : 'bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 hover:shadow-2xl hover:-translate-y-1 text-white'
+                }`}
               >
-                Send Message →
+                {status === 'sending' ? '📤 Sending...' : '📧 Send Email Message'}
               </button>
+
+              {/* Status Messages */}
+              {status === 'success' && (
+                <div className="bg-green-100 border-2 border-green-400 text-green-800 p-4 rounded-2xl text-center font-semibold animate-pulse">
+                  ✅ Email sent successfully! Check your spam if not received.
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="bg-red-100 border-2 border-red-400 text-red-800 p-4 rounded-2xl text-center font-semibold">
+                  ❌ Send failed. Use WhatsApp button above!
+                </div>
+              )}
             </form>
           </div>
         </div>
 
-        {/* LIVE GOOGLE MAPS - MG Road Panjim (15.4980, 73.8278) */}
+        {/* Your existing map - UNCHANGED */}
         <section className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/50">
           <div className="p-8 text-center border-b border-gray-100">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Our Location</h2>
