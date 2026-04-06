@@ -161,7 +161,7 @@ ${details}
                   <Input
                     label="Pickup From"
                     type="text"
-                    placeholder="e.g. Panjim Bus Stand"
+                    placeholder="e.g. Siolim Bus Stand"
                     value={fromDestination}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setFromDestination(e.target.value)}
                     required

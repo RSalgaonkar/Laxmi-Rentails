@@ -39,9 +39,9 @@ const About = () => (
       <section className="grid md:grid-cols-2 gap-12 items-center mb-20">
         <div>
           <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
-          <p className="text-lg text-gray-600 mb-6">Founded in Panjim, Goa, Laxmi Rentals started with 5 cars and a dream to make mobility accessible. Today, we serve thousands with a modern fleet and 24/7 support.</p>
+          <p className="text-lg text-gray-600 mb-6">Founded in Siolim, Goa, Laxmi Rentals started with 5 cars and a dream to make mobility accessible. Today, we serve thousands with a modern fleet and 24/7 support.</p>
           <ul className="space-y-3 text-gray-600">
-            <li>• Fleet of 500+ premium vehicles</li>
+            <li>• Fleet of 20+ premium vehicles</li>
             <li>• Pan-India delivery options</li>
             <li>• Eco-friendly & well-maintained</li>
             <li>• Instant WhatsApp booking</li>
