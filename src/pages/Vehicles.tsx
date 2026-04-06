@@ -3,11 +3,18 @@ import { useVehicles } from '../hooks/useVehicles';
 import VehicleCard from '../components/VehicleCard';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
-// import { Link } from 'react-router-dom';
-// import Header from '../components/Header'; 
+// import { useSearchParams } from 'react-router-dom';
 
 const VehiclesPage: React.FC = () => {
   const { vehicles: filteredVehicles, filter, setFilter, search, setSearch } = useVehicles();
+  
+  // const [searchParams] = useSearchParams();
+  // const query = searchParams.get('q') || '';
+  
+  // Filter vehicles by query
+  // const filteredVehicles = vehicles.filter(vehicle =>
+  //   vehicle.name.toLowerCase().includes(query.toLowerCase())
+  // );
 
   return (
     <section className="py-24 min-h-screen" id="vehicles">
