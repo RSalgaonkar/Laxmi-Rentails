@@ -60,7 +60,7 @@ ${details}
 *Please confirm & reply!* 🙏`;
   }, [customerName, customerPhone, vehicle, bookingDate, fromDestination, toDestination, dateFrom, dateTo, days, isTaxi]);
 
-  const ADMIN_WHATSAPP_NUMBER = '+918888120894'; // EDIT YOUR NUMBER
+  const ADMIN_WHATSAPP_NUMBER = '+918698281323'; // EDIT YOUR NUMBER
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
