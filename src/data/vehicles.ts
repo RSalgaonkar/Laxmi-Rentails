@@ -5,7 +5,7 @@ export const vehicles: Vehicle[] = [
     id: '1',
     type: 'taxi',
     name: 'Swift Dzire AC',
-    image: 'https://images.unsplash.com/photo-1564569321-97943e45ccee?w=500&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&h=300&fit=crop',
     pricePerDay: 1500,
     capacity: 4,
     description: 'Premium AC sedan for comfortable city rides and airport transfers.',
@@ -34,11 +34,11 @@ export const vehicles: Vehicle[] = [
   {
     id: '4',
     type: 'taxi',
-    name: 'Honda Amaze',
+    name: 'SUV Ertiga 7 seater',
     image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&h=300&fit=crop',
     pricePerDay: 1300,
-    capacity: 4,
-    description: 'Compact sedan for economical daily commutes.',
+    capacity: 7,
+    description: 'Compact SUV for economical daily commutes.',
     features: ['AC', 'Compact Size', 'Fuel Efficient']
   },
   {
@@ -60,5 +60,25 @@ export const vehicles: Vehicle[] = [
     capacity: 2,
     description: 'Sports bike for thrill seekers and short trips.',
     features: ['ABS', 'Digital Console', 'Performance Engine']
+  },
+  {
+    id: '7',
+    type: 'taxi',
+    name: 'Innova crysta Maxi Cab',
+    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&h=300&fit=crop',
+    pricePerDay: 1300,
+    capacity: 8,
+    description: 'Compact MAXI CAB for economical daily commutes.',
+    features: ['AC', 'Compact Size', 'Fuel Efficient']
+  },
+  {
+    id: '8',
+    type: 'taxi',
+    name: 'SML Bus',
+    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&h=300&fit=crop',
+    pricePerDay: 1300,
+    capacity: 30,
+    description: 'Compact BUS for economical daily commutes.',
+    features: ['AC', 'Compact Size', 'Fuel Efficient']
   }
 ];

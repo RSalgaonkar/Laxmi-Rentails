@@ -40,8 +40,8 @@ const VehicleCard: React.FC<Props> = ({ vehicle }) => (
           </p>
           <div className="flex items-center justify-between mb-6">
             <div>
-              <span className="text-4xl font-black text-saffron-600 block">₹{vehicle.pricePerDay}</span>
-              <span className="text-lg text-gray-500">per day</span>
+              {/* <span className="text-4xl font-black text-saffron-600 block">₹{vehicle.pricePerDay}</span> */}
+              {/* <span className="text-lg text-gray-500">per day</span> */}
             </div>
             <div className="text-2xl font-bold">👥 {vehicle.capacity}</div>
           </div>
