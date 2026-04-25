@@ -39,7 +39,6 @@ const BookingForm: FC = () => {
   }, [dateFrom, dateTo, isTaxi]);
 
   const whatsappMessage = useMemo(() => {
-    const total = vehicle.pricePerDay * days;
     let details = '';
     
     if (isTaxi) {
@@ -196,20 +195,7 @@ ${details}
               {/* Price Display */}
               <div className="p-6 bg-gradient-to-r from-saffron-50 to-blue-50 rounded-3xl border-2 border-dashed border-saffron-200">
                 <div className="flex items-center justify-between">
-                  <div>
-                    {/* <span className="text-3xl font-black text-saffron-600 block">
-                      ₹{vehicle.pricePerDay.toLocaleString()}
-                    </span> */}
-                    {/* <div className="text-lg font-semibold text-gray-700">per day</div> */}
-                  </div>
-                  {/* {days > 0 && (
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-emerald-700">
-                        Total: ₹{(vehicle.pricePerDay * days).toLocaleString()}
-                      </div>
-                      <div className="text-sm text-emerald-600">{days} {isTaxi ? 'day' : 'days'}</div>
-                    </div>
-                  )} */}
+                  
                 </div>
               </div>
               
@@ -227,10 +213,6 @@ ${details}
                   ? '📱 Sending to Admin...' 
                   : `📱 Send WhatsApp Booking `
                 }
-                {/* {isSubmitting 
-                  ? '📱 Sending to Admin...' 
-                  : `📱 Send WhatsApp Booking (${days > 0 ? `₹${(vehicle.pricePerDay * days).toLocaleString()}` : 'Fill Details'})`
-                } */}
               </Button>
               
               <p className="text-center text-sm text-gray-500">

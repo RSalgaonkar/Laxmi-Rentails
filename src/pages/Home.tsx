@@ -1,7 +1,6 @@
 import Hero from '../components/common/Hero';
 import VehicleCard from '../components/VehicleCard';
 import { vehicles } from '../data/vehicles';
-// import Button from '../components/ui/Button';
 
 const Home: React.FC = () => (
   <>
@@ -22,12 +21,6 @@ const Home: React.FC = () => (
             <VehicleCard key={vehicle.id} vehicle={vehicle} />
           ))}
         </div>
-        
-        {/* <div className="text-center">
-          <Button size="lg" className="px-16 py-8 text-2xl shadow-2xl !shadow-orange-500/50 mx-auto">
-            🚙 View All Vehicles
-          </Button>
-        </div> */}
       </div>
     </section>
   </>

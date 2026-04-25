@@ -9,15 +9,6 @@ interface Props {
 
 const VehicleCard: React.FC<Props> = ({ vehicle }) => (
   <section>
-    {/* <div className="fixed top-4 right-4 z-50 md:top-6 md:right-6">
-      <Link
-        to="/"
-        className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-semibold text-lg rounded-2xl shadow-2xl hover:shadow-none hover:scale-105 transform transition-all duration-300 border-4 border-white hover:border-transparent hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700"
-      >
-        <span>🏠</span>
-        <span>Home</span>
-      </Link>
-    </div> */}
     <Link to={`/booking/${vehicle.id}`} className="block h-full vehicle-glow group">
       <Card className="h-full flex flex-col overflow-hidden hover:shadow-3xl hover:-translate-y-4 transition-all duration-700 hover:bg-white/95">
         <div className="flex-shrink-0 relative overflow-hidden mb-6">
@@ -39,10 +30,6 @@ const VehicleCard: React.FC<Props> = ({ vehicle }) => (
             {vehicle.description}
           </p>
           <div className="flex items-center justify-between mb-6">
-            <div>
-              {/* <span className="text-4xl font-black text-saffron-600 block">₹{vehicle.pricePerDay}</span> */}
-              {/* <span className="text-lg text-gray-500">per day</span> */}
-            </div>
             <div className="text-2xl font-bold">👥 {vehicle.capacity}</div>
           </div>
           <div className="mb-6">

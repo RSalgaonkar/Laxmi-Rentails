@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-// import { Vehicle } from '../components/types/index';
 import { vehicles } from '../data/vehicles';
 
 export const useVehicles = () => {
